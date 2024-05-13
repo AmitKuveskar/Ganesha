@@ -1,0 +1,22 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/Decoration_image"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:src="@drawable/murtikar"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

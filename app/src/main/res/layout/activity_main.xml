@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/topbg"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:background="@drawable/topbg" />
+
+    <FrameLayout
+        android:id="@+id/myganesha2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topbg">
+
+        <ImageView
+            android:id="@+id/myganesha"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/ganesha" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/myganesha"
+            android:text="My Ganesha"
+            android:textColor="#FF0000"
+            android:textSize="40dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center" />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/myganesha2">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="30dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/circular_button"
+                android:layout_width="110dp"
+                android:text="Ganesha Images"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:layout_height="110dp"
+                android:background="@drawable/g1"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="8dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/circular_button2"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:text="Famous Murtikar"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:background="@drawable/g2"
+
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="8dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/circular_button3"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:text="Famous Mandal"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:background="@drawable/g3"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="7dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/circular_button4"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:text="Decoration Ideas"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:background="@drawable/g4"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="8dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/circular_button5"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:text="Ganesha Aarti"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:background="@drawable/g1"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="8dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/circular_button6"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:text="Ganesha Stories"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:background="@drawable/g6"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topbg"
+        android:layout_above="@+id/bottombg"
+        android:background="@drawable/bottombg" />
+
+
+
+    <ImageView
+        android:id="@+id/bottombg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/redbar"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/home"
+        app:tint="@color/white" />
+
+
+
+</RelativeLayout>

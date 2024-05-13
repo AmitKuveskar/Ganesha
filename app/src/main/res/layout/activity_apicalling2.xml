@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".APICalling.Mandal.APICallingActivity2">
+
+
+    <FrameLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/banner_image"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/redbar"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/banner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Famous Ganesh Mandal"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top"/>
+
+    <ImageView
+        android:id="@+id/bottombg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/redbar"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/home"
+        app:tint="@color/white" />
+
+
+</RelativeLayout>

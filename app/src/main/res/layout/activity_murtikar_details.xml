@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    tools:context=".APICalling.Murtikar.MurtikarDetailsActivity"
+    android:padding="16dp">
+
+    <FrameLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/banner_image"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/redbar"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/banner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Famous Ganesh Murtikar"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:src="@drawable/murtikar"
+            android:scaleType="fitXY"
+            android:layout_below="@id/top"/>
+
+
+        <TextView
+            android:id="@+id/Kalakar_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_below="@id/image"
+            android:drawablePadding="10dp"
+            android:text="murtikar"
+            android:padding="10dp"
+            android:drawableTint="@color/black"
+            android:textSize="20dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+           android:layout_below="@id/Kalakar_name"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:drawableStart="@drawable/addressicon"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="Location" />
+
+
+    <TextView
+        android:id="@+id/seprater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/Kalakar_name"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:drawableStart="@drawable/saperater"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:text="Location" />
+
+        <TextView
+            android:id="@+id/contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="50dp"
+           android:layout_below="@id/location"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:drawableStart="@drawable/phoneicon"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="Contact" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact"
+            android:layout_above="@+id/bottombg"
+            android:background="@drawable/bottomback" />
+
+
+
+
+    <ImageView
+        android:id="@+id/bottombg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/redbar"
+        android:src="@drawable/home"
+        android:layout_alignParentBottom="true"
+        app:tint="@color/white" />
+
+</RelativeLayout>
