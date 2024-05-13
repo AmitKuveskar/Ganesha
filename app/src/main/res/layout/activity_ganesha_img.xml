@@ -120,7 +120,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/topbg"
         android:layout_above="@+id/bottombg"
-        android:background="@drawable/bottombg" />
+        android:background="@drawable/bg_temple" />
 
 
 

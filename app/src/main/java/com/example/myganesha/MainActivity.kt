@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myganesha.APICalling.Aarti.APICallingActivity6
 import com.example.myganesha.APICalling.Decoration.APICallingActivity3
 import com.example.myganesha.APICalling.Decoration.DecorationPojo
 import com.example.myganesha.APICalling.Murtikar.APICallingActivity
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var Mandalbtn : Button
     lateinit var Decorationbtn : Button
     lateinit var Storiesbtn : Button
+    lateinit var Musicbtn : Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         Murtikarbtn = findViewById(R.id.circular_button2)
         Mandalbtn = findViewById(R.id.circular_button3)
         Decorationbtn = findViewById(R.id.circular_button4)
+        Musicbtn = findViewById(R.id.circular_button5)
         Storiesbtn = findViewById(R.id.circular_button6)
 
         Ganeshbtn.setOnClickListener {
@@ -56,6 +59,11 @@ class MainActivity : AppCompatActivity() {
 
         Decorationbtn.setOnClickListener {
             val intent = Intent(this, APICallingActivity3::class.java)
+            startActivity(intent)
+        }
+
+        Musicbtn.setOnClickListener {
+            val intent = Intent(this, APICallingActivity6::class.java)
             startActivity(intent)
         }
 

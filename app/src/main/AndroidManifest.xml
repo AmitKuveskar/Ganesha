@@ -19,6 +19,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".APICalling.Aarti.MusicPlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".APICalling.Aarti.APICallingActivity6"
+            android:exported="false" />
+        <activity
             android:name=".APICalling.Stories.APICallingActivity5"
             android:exported="false" />
         <activity

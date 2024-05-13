@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/route"
         android:layout_above="@+id/bottombg"
-        android:background="@drawable/bottomback" />
+        android:background="@drawable/background_road" />
 
 
 
