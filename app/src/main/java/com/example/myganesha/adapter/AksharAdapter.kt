@@ -15,9 +15,9 @@ import com.example.myganesha.APICalling.AksharGanesha.AksharPojoItem
 import com.example.myganesha.APICalling.Murtikar.MurtikarDetailsActivity
 import com.example.myganesha.R
 
-class AksharAdapter(private val context: Context, private var originalList: List<AksharPojoItem>) : RecyclerView.Adapter<AksharAdapter.ViewHolder>() {
+class AksharAdapter(private val context: Context, private var AksharPojo: List<AksharPojoItem>) : RecyclerView.Adapter<AksharAdapter.ViewHolder>() {
 
-    private var filteredList: List<AksharPojoItem> = originalList
+    private var filteredList: List<AksharPojoItem> = AksharPojo
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val aksharImage: ImageView = itemView.findViewById(R.id.Akshar_image)
@@ -44,9 +44,9 @@ class AksharAdapter(private val context: Context, private var originalList: List
     // Method to perform search based on query
     fun performSearch(query: String) {
         if (query.isEmpty()) {
-            filteredList = originalList // Reset to original list if query is empty
+            filteredList = AksharPojo // Reset to original list if query is empty
         } else {
-            filteredList = originalList.filter { it.name.contains(query, ignoreCase = true) }
+            filteredList = AksharPojo.filter { it.name.contains(query, ignoreCase = true) }
         }
         notifyDataSetChanged() // Notify adapter that data set has changed
     }

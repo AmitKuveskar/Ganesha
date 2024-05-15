@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".APICalling.Aarti.MusicPlayerActivity">
+
+    <FrameLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/banner_image"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/redbar"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/banner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ganesha Aarti"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/Music_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/top"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:drawableStart="@drawable/baseline_dehaze_24"
+                android:drawableEnd="@drawable/playlisticon"
+                android:drawablePadding="20dp"
+                android:gravity="left"
+                android:text="Now Playing" />
+
+            <ImageView
+                android:id="@+id/seprater"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/saperater"
+                android:layout_below="@id/Music_title" />
+
+            <ImageView
+                android:id="@+id/musicimage"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="@drawable/songimage"
+                android:layout_below="@id/seprater"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="30dp"
+                android:scaleType="fitCenter" />
+    <SeekBar
+        android:id="@+id/sekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/musicimage"
+        android:layout_above="@id/titlee"/>
+
+    <TextView
+        android:id="@+id/startTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:layout_marginStart="20dp"
+       android:layout_above="@id/titlee" />
+
+    <TextView
+        android:id="@+id/endTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:layout_marginEnd="20dp"
+        android:layout_alignEnd="@id/sekbar"
+        android:layout_above="@id/titlee"/>
+
+
+
+    <TextView
+        android:id="@+id/titlee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sukharta Dukhhrata"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:drawableStart="@drawable/repeat"
+        android:drawableEnd="@drawable/shufflemodearrow"
+        android:layout_above="@id/f1" />
+
+
+<FrameLayout
+    android:id="@+id/f1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@id/bottombg">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/playbuttonip"
+        android:scaleType="fitCenter"/>
+
+<androidx.appcompat.widget.AppCompatImageButton
+    android:id="@+id/prevButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/backmusic"
+    android:layout_gravity="center"
+    android:layout_marginRight="50dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/playPauseButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/playicon"
+        android:layout_gravity="center" />
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/forwardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/forward" />
+
+
+</FrameLayout>
+
+    <ImageView
+        android:id="@+id/bottombg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/redbar"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/home"
+        app:tint="@color/white" />
+
+</RelativeLayout>
