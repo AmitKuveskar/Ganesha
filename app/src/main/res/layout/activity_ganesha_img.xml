@@ -97,7 +97,7 @@
         android:textSize="13dp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ShareApp"
+        android:id="@+id/AksharGanesha"
         android:layout_width="140dp"
         android:layout_height="120dp"
         android:layout_below="@id/regular"

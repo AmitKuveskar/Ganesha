@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".APICalling.AksharGanesha.APICallingActivity8">
+
+    <FrameLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/banner_image"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/redbar"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/banner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Akshar Ganesha"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top"
+        android:hint="Search Name"
+        android:inputType="text"
+        android:imeOptions="actionSearch"
+        android:maxLines="1"
+        android:background="@color/white"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:drawableEnd="@drawable/baseline_search_24"
+        android:drawablePadding="8dp" />
+
+    <!-- You can add a search button if needed -->
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/searchEditText"
+        android:src="@drawable/baseline_search_24"
+        android:background="@drawable/button_background_circle"
+        android:drawableStart="@drawable/baseline_search_24"
+        android:padding="16dp"
+        android:textColor="#000000"
+        android:text="Search"
+        android:textSize="16sp" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchButton"/>
+
+    <ImageView
+        android:id="@+id/bottombg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/redbar"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/home"
+        app:tint="@color/white" />
+
+</RelativeLayout>
+

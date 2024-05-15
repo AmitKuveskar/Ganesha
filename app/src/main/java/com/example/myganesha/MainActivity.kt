@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var Musicbtn : Button
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -42,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         Decorationbtn = findViewById(R.id.circular_button4)
         Musicbtn = findViewById(R.id.circular_button5)
         Storiesbtn = findViewById(R.id.circular_button6)
+
+
 
         Ganeshbtn.setOnClickListener {
         val intent = Intent(this, GaneshaImgActivity::class.java)

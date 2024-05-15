@@ -34,6 +34,7 @@ class MusicAdapter(private val context: Context, private val AartiPojo: AartiPoj
             intent.putExtra("title", Aarti.title)
             intent.putExtra("description", Aarti.description)
             intent.putExtra("audio", Aarti.audio)
+            intent.putExtra("position", position)
             context.startActivity(intent)
         }
 

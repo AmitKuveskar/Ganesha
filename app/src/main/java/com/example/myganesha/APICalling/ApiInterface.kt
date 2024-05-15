@@ -2,7 +2,9 @@ package com.example.myganesha.APICalling
 
 
 import com.example.myganesha.APICalling.Aarti.AartiPojo
+import com.example.myganesha.APICalling.AksharGanesha.AksharPojo
 import com.example.myganesha.APICalling.Decoration.DecorationPojo
+import com.example.myganesha.APICalling.EcoFriendly.EcoFriendlyPojo
 import com.example.myganesha.APICalling.Mandal.MandalPojo
 import com.example.myganesha.APICalling.Murtikar.MurtikarPojo
 import com.example.myganesha.APICalling.Stories.StoriesPojo
@@ -34,5 +36,12 @@ interface ApiInterface {
 
     @GET("/v3/ganesha/aarti")
     fun music(): Call<AartiPojo>
+
+
+    @GET("/v3/ganesha/murti_images")
+    fun eco(@Query("category_id") category_id: String): Call<EcoFriendlyPojo>
+
+    @GET("/v3/ganesha/akshar_ganpati")
+    fun akshar(): Call<AksharPojo>
 
 }
