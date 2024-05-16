@@ -42,7 +42,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:drawableStart="@drawable/baseline_dehaze_24"
-                android:drawableEnd="@drawable/playlisticon"
+                android:drawableEnd="@drawable/baseline_queue_music_24"
                 android:drawablePadding="20dp"
                 android:gravity="left"
                 android:text="Now Playing" />
@@ -92,18 +92,37 @@
 
     <TextView
         android:id="@+id/titlee"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:text="Sukharta Dukhhrata"
         android:padding="10dp"
         android:textSize="20sp"
-        android:gravity="center"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
-        android:drawableStart="@drawable/repeat"
-        android:drawableEnd="@drawable/shufflemodearrow"
         android:layout_above="@id/f1" />
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/repeatButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_below="@id/sekbar"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/baseline_repeat_24"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/shuffleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@id/sekbar"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/baseline_shuffle_24"/>
 
 
 <FrameLayout
@@ -121,7 +140,7 @@
     android:id="@+id/prevButton"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/backmusic"
+    android:background="@drawable/baseline_skip_previous_24"
     android:layout_gravity="center"
     android:layout_marginRight="50dp"/>
 
@@ -129,7 +148,7 @@
         android:id="@+id/playPauseButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/playicon"
+        android:src="@drawable/baseline_play_arrow_24"
         android:layout_gravity="center" />
 
 
@@ -139,7 +158,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="50dp"
-        android:background="@drawable/forward" />
+        android:background="@drawable/baseline_skip_next_24" />
 
 
 </FrameLayout>
@@ -147,7 +166,7 @@
     <ImageView
         android:id="@+id/bottombg"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="@drawable/redbar"
         android:layout_alignParentBottom="true"
         android:src="@drawable/home"

@@ -28,10 +28,16 @@ class MusicPlayerActivity : AppCompatActivity() {
     private lateinit var playPauseButton: AppCompatImageButton
     private lateinit var nextButton: AppCompatImageButton
     private lateinit var prevButton: AppCompatImageButton
+    private lateinit var shuffleButton: AppCompatImageButton
+    private lateinit var repeatButton: AppCompatImageButton
 
-    private lateinit var songList: List<AartiPojoItem>
+    private lateinit var originalSongList: List<AartiPojoItem>
+    private lateinit var shuffledSongList: MutableList<AartiPojoItem>
     private var currentSongIndex: Int = 0
     private var handler: android.os.Handler = android.os.Handler()
+
+    private var isShuffleOn: Boolean = false
+    private var isRepeatOn: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,22 +51,27 @@ class MusicPlayerActivity : AppCompatActivity() {
         playPauseButton = findViewById(R.id.playPauseButton)
         nextButton = findViewById(R.id.forwardButton)
         prevButton = findViewById(R.id.prevButton)
+        shuffleButton = findViewById(R.id.shuffleButton)
+        repeatButton = findViewById(R.id.repeatButton)
 
         // Retrieve song list from intent
-        songList = intent.getParcelableArrayListExtra("songList")!!
+        originalSongList = intent.getParcelableArrayListExtra("songList")!!
+
+        // Create a copy of the original song list
+        shuffledSongList = originalSongList.toMutableList()
 
         // Retrieve audio data from intent
         val id = intent.getStringExtra("id")
 
         // Find the index of the current song
-        currentSongIndex = songList.indexOfFirst { it.id == id }
+        currentSongIndex = shuffledSongList.indexOfFirst { it.id == id }
 
         // Set title and description if needed
-        titleTextView.text = songList[currentSongIndex].title
+        titleTextView.text = shuffledSongList[currentSongIndex].title
 
         // Initialize MediaPlayer with the received audio URL
         mediaPlayer = MediaPlayer().apply {
-            setDataSource(songList[currentSongIndex].audio)
+            setDataSource(shuffledSongList[currentSongIndex].audio)
             prepareAsync()
             setOnPreparedListener {
                 // Update the end time TextView with the duration of the audio
@@ -84,6 +95,14 @@ class MusicPlayerActivity : AppCompatActivity() {
 
                 // Start updating SeekBar progress
                 updateSeekBar()
+            }
+            setOnCompletionListener {
+                if (isRepeatOn) {
+                    mediaPlayer.seekTo(0)
+                    mediaPlayer.start()
+                } else {
+                    playNextSong()
+                }
             }
         }
 
@@ -113,7 +132,7 @@ class MusicPlayerActivity : AppCompatActivity() {
         playPauseButton.setOnClickListener {
             if (mediaPlayer.isPlaying) {
                 mediaPlayer.pause() // Pause the media player
-                playPauseButton.setImageResource(R.drawable.playicon) // Change button icon to play
+                playPauseButton.setImageResource(R.drawable.baseline_play_arrow_24) // Change button icon to play
                 handler.removeCallbacks(updateSeekBarTask) // Stop updating SeekBar progress
             } else {
                 mediaPlayer.start() // Start the media player
@@ -131,68 +150,81 @@ class MusicPlayerActivity : AppCompatActivity() {
         prevButton.setOnClickListener {
             playPrevSong()
         }
+
+        // Set OnClickListener to shuffleButton
+        shuffleButton.setOnClickListener {
+            toggleShuffle()
+        }
+
+        // Set OnClickListener to repeatButton
+        repeatButton.setOnClickListener {
+            toggleRepeat()
+        }
     }
 
     private fun playNextSong() {
-        // Increment current song index to play the next song
-        currentSongIndex = (currentSongIndex + 1) % songList.size
-        // Play the next song
-        playSong(songList[currentSongIndex])
+        if (isShuffleOn) {
+            currentSongIndex = (currentSongIndex + 1) % shuffledSongList.size
+        } else {
+            currentSongIndex = (currentSongIndex + 1) % originalSongList.size
+        }
+        playSong()
     }
 
     private fun playPrevSong() {
-        // Decrement current song index to play the previous song
-        currentSongIndex = (currentSongIndex - 1 + songList.size) % songList.size
-        // Play the previous song
-        playSong(songList[currentSongIndex])
+        if (isShuffleOn) {
+            currentSongIndex = (currentSongIndex - 1 + shuffledSongList.size) % shuffledSongList.size
+        } else {
+            currentSongIndex = (currentSongIndex - 1 + originalSongList.size) % originalSongList.size
+        }
+        playSong()
     }
 
-    private fun playSong(song: AartiPojoItem) {
-        // Release current MediaPlayer resources
-        mediaPlayer.release()
-
-        // Initialize new MediaPlayer with the selected song's audio URL
-        mediaPlayer = MediaPlayer().apply {
-            setDataSource(song.audio)
-            prepareAsync()
-            setOnPreparedListener {
-                // Update UI and start playback
-                val durationInMillis = mediaPlayer.duration
-                val durationInMinutes = durationInMillis / 1000 / 60
-                val durationInSeconds = (durationInMillis / 1000) % 60
-                endTimeTextView.text =
-                    String.format(Locale.getDefault(), "%02d:%02d", durationInMinutes, durationInSeconds)
-                seekBar.max = durationInMillis
-                start()
-                playPauseButton.setImageResource(R.drawable.baseline_pause_24)
-                updateSeekBar() // Start updating SeekBar progress
-            }
-        }
-        // Update title
+    private fun playSong() {
+        mediaPlayer.reset()
+        val song = if (isShuffleOn) shuffledSongList[currentSongIndex] else originalSongList[currentSongIndex]
+        mediaPlayer.setDataSource(song.audio)
+        mediaPlayer.prepareAsync()
         titleTextView.text = song.title
     }
 
     private fun updateSeekBar() {
-        // Update SeekBar progress every second
         handler.postDelayed(updateSeekBarTask, 1000)
     }
 
     private val updateSeekBarTask = object : Runnable {
         override fun run() {
-            // Update SeekBar progress
             seekBar.progress = mediaPlayer.currentPosition
-            // Update start time TextView with current progress
             val minutes = mediaPlayer.currentPosition / 1000 / 60
             val seconds = (mediaPlayer.currentPosition / 1000) % 60
             startTimeTextView.text = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
-            // Schedule the next update in 1 second
             handler.postDelayed(this, 1000)
+        }
+    }
+
+    private fun toggleShuffle() {
+        isShuffleOn = !isShuffleOn
+        if (isShuffleOn) {
+            shuffleButton.setImageResource(R.drawable.baseline_shuffle_on_24)
+            shuffledSongList.shuffle()
+        } else {
+            shuffleButton.setImageResource(R.drawable.baseline_shuffle_24)
+            shuffledSongList.clear()
+            shuffledSongList.addAll(originalSongList)
+        }
+    }
+
+    private fun toggleRepeat() {
+        isRepeatOn = !isRepeatOn
+        if (isRepeatOn) {
+            repeatButton.setImageResource(R.drawable.baseline_repeat_on_24)
+        } else {
+            repeatButton.setImageResource(R.drawable.baseline_repeat_24)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // Release MediaPlayer resources and remove callbacks to prevent memory leaks
         mediaPlayer.release()
         handler.removeCallbacks(updateSeekBarTask)
     }
