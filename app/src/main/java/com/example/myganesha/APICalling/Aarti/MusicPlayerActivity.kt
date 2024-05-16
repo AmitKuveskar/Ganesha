@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myganesha.R
 import java.util.Locale
+import java.util.logging.Handler
 
 class MusicPlayerActivity : AppCompatActivity() {
 
@@ -30,6 +31,7 @@ class MusicPlayerActivity : AppCompatActivity() {
 
     private lateinit var songList: List<AartiPojoItem>
     private var currentSongIndex: Int = 0
+    private var handler: android.os.Handler = android.os.Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,32 +81,31 @@ class MusicPlayerActivity : AppCompatActivity() {
                 // Start playback
                 start()
                 playPauseButton.setImageResource(R.drawable.baseline_pause_24) // Change button icon to pause
+
+                // Start updating SeekBar progress
+                updateSeekBar()
             }
         }
 
         // SeekBar listener
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(
-                seekBar: SeekBar?,
-                progress: Int,
-                fromUser: Boolean
-            ) {
-                // Update the start time TextView with the current progress of the SeekBar
-                val minutes = progress / 1000 / 60
-                val seconds = (progress / 1000) % 60
-                startTimeTextView.text =
-                    String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    // Seek to the selected position when the SeekBar is moved by the user
+                    mediaPlayer.seekTo(progress)
+                }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
                 // Pause the media player when the SeekBar is touched
                 mediaPlayer.pause()
+                handler.removeCallbacks(updateSeekBarTask)
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // Seek to the selected position when the SeekBar is released
-                mediaPlayer.seekTo(seekBar?.progress ?: 0)
+                // Resume playback and start updating SeekBar progress again
                 mediaPlayer.start()
+                updateSeekBar()
             }
         })
 
@@ -113,9 +114,11 @@ class MusicPlayerActivity : AppCompatActivity() {
             if (mediaPlayer.isPlaying) {
                 mediaPlayer.pause() // Pause the media player
                 playPauseButton.setImageResource(R.drawable.playicon) // Change button icon to play
+                handler.removeCallbacks(updateSeekBarTask) // Stop updating SeekBar progress
             } else {
                 mediaPlayer.start() // Start the media player
                 playPauseButton.setImageResource(R.drawable.baseline_pause_24) // Change button icon to pause
+                updateSeekBar() // Start updating SeekBar progress
             }
         }
 
@@ -162,9 +165,35 @@ class MusicPlayerActivity : AppCompatActivity() {
                 seekBar.max = durationInMillis
                 start()
                 playPauseButton.setImageResource(R.drawable.baseline_pause_24)
+                updateSeekBar() // Start updating SeekBar progress
             }
         }
         // Update title
         titleTextView.text = song.title
+    }
+
+    private fun updateSeekBar() {
+        // Update SeekBar progress every second
+        handler.postDelayed(updateSeekBarTask, 1000)
+    }
+
+    private val updateSeekBarTask = object : Runnable {
+        override fun run() {
+            // Update SeekBar progress
+            seekBar.progress = mediaPlayer.currentPosition
+            // Update start time TextView with current progress
+            val minutes = mediaPlayer.currentPosition / 1000 / 60
+            val seconds = (mediaPlayer.currentPosition / 1000) % 60
+            startTimeTextView.text = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
+            // Schedule the next update in 1 second
+            handler.postDelayed(this, 1000)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Release MediaPlayer resources and remove callbacks to prevent memory leaks
+        mediaPlayer.release()
+        handler.removeCallbacks(updateSeekBarTask)
     }
 }
