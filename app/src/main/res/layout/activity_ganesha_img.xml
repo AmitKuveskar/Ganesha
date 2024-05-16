@@ -119,13 +119,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/topbg"
-        android:layout_above="@+id/bottombg"
+        android:layout_above="@+id/Homebtn"
         android:background="@drawable/bg_temple" />
 
 
 
     <ImageView
-        android:id="@+id/bottombg"
+        android:id="@+id/Homebtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/redbar"
