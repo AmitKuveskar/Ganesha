@@ -40,7 +40,7 @@
 
 
     <ImageView
-        android:id="@+id/bottombg"
+        android:id="@+id/homebtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/redbar"
@@ -48,4 +48,10 @@
         android:src="@drawable/home"
         app:tint="@color/white" />
 
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/baseline_keyboard_arrow_left_24"
+        app:tint="@color/white" />
 </RelativeLayout>

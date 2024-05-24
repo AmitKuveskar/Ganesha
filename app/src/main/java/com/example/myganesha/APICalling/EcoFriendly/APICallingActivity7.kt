@@ -1,6 +1,8 @@
 package com.example.myganesha.APICalling.EcoFriendly
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myganesha.APICalling.Decoration.DecorationPojo
 import com.example.myganesha.APICalling.RetrofitInstance
+import com.example.myganesha.GaneshaImgActivity
+import com.example.myganesha.MainActivity
 import com.example.myganesha.R
 import com.example.myganesha.adapter.APIAdapter3
 import com.example.myganesha.adapter.EcoAdapter
@@ -20,6 +24,8 @@ import retrofit2.Response
 class APICallingActivity7 : AppCompatActivity() {
 
     lateinit var  recyclerView: RecyclerView
+    lateinit var  home :ImageView
+    lateinit var backbtn :ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +38,19 @@ class APICallingActivity7 : AppCompatActivity() {
         }
 
         recyclerView = findViewById(R.id.rv7)
+        home = findViewById(R.id.homebtn)
+        backbtn = findViewById(R.id.backbtn)
+
+
+        home.setOnClickListener {
+            val intent = Intent (this@APICallingActivity7,MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        backbtn.setOnClickListener {
+            val intent = Intent (this@APICallingActivity7,GaneshaImgActivity::class.java)
+            startActivity(intent)
+        }
         getData()
     }
 

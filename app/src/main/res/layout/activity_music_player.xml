@@ -31,21 +31,33 @@
     </FrameLayout>
 
 
-            <TextView
-                android:id="@+id/Music_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/top"
-                android:layout_marginTop="16dp"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:drawableStart="@drawable/baseline_dehaze_24"
-                android:drawableEnd="@drawable/baseline_queue_music_24"
-                android:drawablePadding="20dp"
-                android:gravity="left"
-                android:text="Now Playing" />
+
+
+        <TextView
+            android:id="@+id/Music_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:drawableStart="@drawable/baseline_dehaze_24"
+            android:drawablePadding="20dp"
+            android:gravity="left"
+            android:text="Now Playing" />
+
+        <ImageView
+            android:id="@+id/musicqueue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/baseline_queue_music_24"
+            android:layout_alignParentEnd="true"/>
+
 
             <ImageView
                 android:id="@+id/seprater"
@@ -129,7 +141,7 @@
     android:id="@+id/f1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_above="@id/bottombg">
+    android:layout_above="@id/homebtn">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -164,12 +176,19 @@
 </FrameLayout>
 
     <ImageView
-        android:id="@+id/bottombg"
+        android:id="@+id/homebtn"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="@drawable/redbar"
         android:layout_alignParentBottom="true"
         android:src="@drawable/home"
+        app:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/baseline_keyboard_arrow_left_24"
         app:tint="@color/white" />
 
 </RelativeLayout>

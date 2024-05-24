@@ -1,5 +1,6 @@
 package com.example.myganesha.APICalling.Murtikar
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,9 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.example.myganesha.MainActivity
 import com.example.myganesha.R
 
 class MurtikarDetailsActivity : AppCompatActivity() {
+
+    lateinit var Homebtn :ImageView
+    lateinit var Backbtn :ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,6 +25,20 @@ class MurtikarDetailsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        Homebtn = findViewById(R.id.homebtn)
+        Backbtn = findViewById(R.id.backbtn)
+
+        Homebtn.setOnClickListener {
+            val intent = Intent (this@MurtikarDetailsActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        Backbtn.setOnClickListener {
+            val intent = Intent (this@MurtikarDetailsActivity, APICallingActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val KalakarName = intent.getStringExtra("KalakarName")
         val KalakarImage = intent.getStringExtra("KalakarImage")

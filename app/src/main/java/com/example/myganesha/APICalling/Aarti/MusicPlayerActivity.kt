@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat.startActivity
 
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myganesha.MainActivity
 import com.example.myganesha.R
 import java.util.Locale
 import java.util.logging.Handler
@@ -30,6 +32,9 @@ class MusicPlayerActivity : AppCompatActivity() {
     private lateinit var prevButton: AppCompatImageButton
     private lateinit var shuffleButton: AppCompatImageButton
     private lateinit var repeatButton: AppCompatImageButton
+    private lateinit var musicqueue: ImageView
+    private lateinit var Homebtn: ImageView
+    private lateinit var BackBtn: ImageView
 
     private lateinit var originalSongList: List<AartiPojoItem>
     private lateinit var shuffledSongList: MutableList<AartiPojoItem>
@@ -53,6 +58,25 @@ class MusicPlayerActivity : AppCompatActivity() {
         prevButton = findViewById(R.id.prevButton)
         shuffleButton = findViewById(R.id.shuffleButton)
         repeatButton = findViewById(R.id.repeatButton)
+        musicqueue = findViewById(R.id.musicqueue)
+        Homebtn = findViewById(R.id.homebtn)
+        BackBtn = findViewById(R.id.backbtn)
+
+
+        Homebtn.setOnClickListener {
+            val intent = Intent(this@MusicPlayerActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        BackBtn.setOnClickListener {
+            val intent = Intent(this@MusicPlayerActivity, APICallingActivity6::class.java)
+            startActivity(intent)
+        }
+
+        musicqueue.setOnClickListener{
+            val intent = Intent(this@MusicPlayerActivity,APICallingActivity6::class.java)
+            startActivity(intent)
+        }
 
         // Retrieve song list from intent
         originalSongList = intent.getParcelableArrayListExtra("songList")!!

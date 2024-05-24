@@ -134,5 +134,11 @@
         app:tint="@color/white" />
 
 
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/baseline_keyboard_arrow_left_24"
+        app:tint="@color/white" />
 
 </RelativeLayout>

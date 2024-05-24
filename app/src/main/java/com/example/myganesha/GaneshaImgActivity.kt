@@ -1,6 +1,7 @@
 package com.example.myganesha
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -16,7 +17,8 @@ class GaneshaImgActivity : AppCompatActivity() {
 
     lateinit var Ecobtn :Button
     lateinit var  AksharGaneshaBtn : Button
-    lateinit var Homebtn :ImageView
+    lateinit var HomeBtn :ImageView
+    lateinit var BackBtn : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,8 @@ class GaneshaImgActivity : AppCompatActivity() {
         }
         Ecobtn = findViewById(R.id.ecofriendly)
         AksharGaneshaBtn = findViewById(R.id.AksharGanesha)
-        Homebtn = findViewById(R.id.Homebtn)
+        HomeBtn = findViewById(R.id.Homebtn)
+        BackBtn = findViewById(R.id.backbtn)
 
 
         Ecobtn.setOnClickListener {
@@ -42,7 +45,12 @@ class GaneshaImgActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        Homebtn.setOnClickListener {
+        HomeBtn.setOnClickListener {
+            val intent = Intent(this@GaneshaImgActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        BackBtn.setOnClickListener {
             val intent = Intent(this@GaneshaImgActivity, MainActivity::class.java)
             startActivity(intent)
         }

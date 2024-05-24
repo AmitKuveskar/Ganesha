@@ -1,6 +1,8 @@
 package com.example.myganesha.APICalling.Aarti
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myganesha.APICalling.RetrofitInstance
+import com.example.myganesha.MainActivity
 import com.example.myganesha.R
 import com.example.myganesha.adapter.MusicAdapter
 import retrofit2.Call
@@ -16,6 +19,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class APICallingActivity6 : AppCompatActivity() {
+    lateinit var Homebtn :ImageView
+    lateinit var BackBtn :ImageView
 
     lateinit var  recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +32,21 @@ class APICallingActivity6 : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         recyclerView = findViewById(R.id.rv)
+        Homebtn = findViewById(R.id.homebtn)
+        BackBtn = findViewById(R.id.backbtn)
+
+
+        Homebtn.setOnClickListener {
+            val intent = Intent(this@APICallingActivity6, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        BackBtn.setOnClickListener {
+            val intent = Intent(this@APICallingActivity6, MainActivity::class.java)
+            startActivity(intent)
+        }
         getData()
     }
 

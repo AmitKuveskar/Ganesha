@@ -106,14 +106,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/contact"
-            android:layout_above="@+id/bottombg"
+            android:layout_above="@+id/homebtn"
             android:background="@drawable/background_road" />
 
 
 
 
     <ImageView
-        android:id="@+id/bottombg"
+        android:id="@+id/homebtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/redbar"
@@ -121,4 +121,11 @@
         android:layout_alignParentBottom="true"
         app:tint="@color/white" />
 
+
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/baseline_keyboard_arrow_left_24"
+        app:tint="@color/white" />
 </RelativeLayout>
