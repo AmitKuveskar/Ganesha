@@ -3,7 +3,9 @@ package com.example.myganesha.APICalling.Stories
 import android.content.Intent
 import android.media.Image
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,7 @@ class APICallingActivity4 : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var HomeBtn: ImageView
     lateinit var BackBtn: ImageView
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,7 @@ class APICallingActivity4 : AppCompatActivity() {
         recyclerView = findViewById(R.id.rv)
         HomeBtn = findViewById(R.id.homebtn)
         BackBtn = findViewById(R.id.backbtn)
+        progressBar = findViewById(R.id.progressbar)
 
         HomeBtn.setOnClickListener {
             val intent = Intent(this@APICallingActivity4, MainActivity::class.java)
@@ -54,6 +58,7 @@ class APICallingActivity4 : AppCompatActivity() {
         RetrofitInstance.apiInterface.stories().enqueue(object : Callback<StoriesPojo?> {
             override fun onResponse(p0: Call<StoriesPojo?>, p1: Response<StoriesPojo?>) {
                 if (p1.code() == 200 && p1.body() != null) {
+                    progressBar.visibility = View.GONE
 
                     val LinearLayoutManager = LinearLayoutManager(this@APICallingActivity4)
                     recyclerView.layoutManager =LinearLayoutManager
@@ -65,11 +70,13 @@ class APICallingActivity4 : AppCompatActivity() {
 
                 }else{
                     Toast.makeText(this@APICallingActivity4, "error", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(p0: Call<StoriesPojo?>, p1: Throwable) {
                 Toast.makeText(this@APICallingActivity4, ""+p1.message, Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
             }
         })
     }

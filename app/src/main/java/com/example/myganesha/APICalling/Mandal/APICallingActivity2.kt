@@ -3,7 +3,9 @@ package com.example.myganesha.APICalling.Mandal
 import android.content.Intent
 import android.net.wifi.hotspot2.pps.HomeSp
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +26,7 @@ class APICallingActivity2 : AppCompatActivity() {
     lateinit var  recyclerView: RecyclerView
     lateinit var  Homebtn: ImageView
     lateinit var  Backbtn: ImageView
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,7 @@ class APICallingActivity2 : AppCompatActivity() {
         recyclerView = findViewById(R.id.rv2)
         Homebtn = findViewById(R.id.homebtn)
         Backbtn = findViewById(R.id.backbtn)
+        progressBar = findViewById(R.id.progressbar)
 
 
         Homebtn.setOnClickListener {
@@ -60,6 +64,7 @@ class APICallingActivity2 : AppCompatActivity() {
         RetrofitInstance.apiInterface.getData2().enqueue(object : Callback<MandalPojo?> {
             override fun onResponse(p0: Call<MandalPojo?>, p1: Response<MandalPojo?>) {
                 if (p1.code() == 200 && p1.body() != null) {
+                    progressBar.visibility = View.GONE
 
                     val LinearLayoutManager = LinearLayoutManager(this@APICallingActivity2)
                     recyclerView.layoutManager =LinearLayoutManager
@@ -71,11 +76,13 @@ class APICallingActivity2 : AppCompatActivity() {
 
                 }else{
                     Toast.makeText(this@APICallingActivity2, "error", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(p0: Call<MandalPojo?>, p1: Throwable) {
                 Toast.makeText(this@APICallingActivity2, ""+p1.message, Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
             }
         })
 

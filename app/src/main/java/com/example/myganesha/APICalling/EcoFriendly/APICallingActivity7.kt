@@ -2,7 +2,9 @@ package com.example.myganesha.APICalling.EcoFriendly
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +28,7 @@ class APICallingActivity7 : AppCompatActivity() {
     lateinit var  recyclerView: RecyclerView
     lateinit var  home :ImageView
     lateinit var backbtn :ImageView
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +43,7 @@ class APICallingActivity7 : AppCompatActivity() {
         recyclerView = findViewById(R.id.rv7)
         home = findViewById(R.id.homebtn)
         backbtn = findViewById(R.id.backbtn)
+        progressBar = findViewById(R.id.progressbar)
 
 
         home.setOnClickListener {
@@ -58,6 +62,7 @@ class APICallingActivity7 : AppCompatActivity() {
         RetrofitInstance.apiInterface.eco(1.toString()).enqueue(object : Callback<EcoFriendlyPojo?> {
             override fun onResponse(p0: Call<EcoFriendlyPojo?>, p1: Response<EcoFriendlyPojo?>) {
                 if (p1.code() == 200 && p1.body() != null) {
+                    progressBar.visibility = View.GONE
 
                     val GridLayoutManager = GridLayoutManager(this@APICallingActivity7,2)
                     recyclerView.layoutManager = GridLayoutManager
@@ -69,11 +74,13 @@ class APICallingActivity7 : AppCompatActivity() {
 
                 } else {
                     Toast.makeText(this@APICallingActivity7, "error", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(p0: Call<EcoFriendlyPojo?>, p1: Throwable) {
                 Toast.makeText(this@APICallingActivity7, ""+p1.message, Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
             }
         })
 

@@ -2,7 +2,9 @@ package com.example.myganesha.APICalling.Murtikar
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,7 @@ class APICallingActivity : AppCompatActivity() {
     lateinit var  recyclerView: RecyclerView
     lateinit var HomeBtn : ImageView
     lateinit var BackBtn : ImageView
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,7 @@ class APICallingActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.rv)
         HomeBtn = findViewById(R.id.homebtn)
         BackBtn = findViewById(R.id.backbtn)
+        progressBar = findViewById(R.id.progressbar)
 
         HomeBtn.setOnClickListener {
             val intent = Intent (this@APICallingActivity, MainActivity::class.java)
@@ -55,6 +59,7 @@ class APICallingActivity : AppCompatActivity() {
         RetrofitInstance.apiInterface.getData(3).enqueue(object : Callback<MurtikarPojo?> {
             override fun onResponse(p0: Call<MurtikarPojo?>, p1: Response<MurtikarPojo?>) {
                if (p1.code() == 200 && p1.body() != null) {
+                   progressBar.visibility = View.GONE
 
                    val LinearLayoutManager = LinearLayoutManager(this@APICallingActivity)
                    recyclerView.layoutManager =LinearLayoutManager
@@ -66,11 +71,13 @@ class APICallingActivity : AppCompatActivity() {
 
                }else{
                    Toast.makeText(this@APICallingActivity, "error", Toast.LENGTH_SHORT).show()
+                   progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(p0: Call<MurtikarPojo?>, p1: Throwable) {
                 Toast.makeText(this@APICallingActivity, ""+p1.message, Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
             }
         })
     }

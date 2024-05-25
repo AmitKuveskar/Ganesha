@@ -2,7 +2,9 @@ package com.example.myganesha.APICalling.Decoration
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +28,7 @@ class APICallingActivity3 : AppCompatActivity() {
     lateinit var  recyclerView: RecyclerView
     lateinit var  Homebtn: ImageView
     lateinit var  BackBtn: ImageView
+    lateinit var progressBar: ProgressBar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +44,7 @@ class APICallingActivity3 : AppCompatActivity() {
         recyclerView = findViewById(R.id.rv3)
         Homebtn = findViewById(R.id.homebtn)
         BackBtn = findViewById(R.id.backbtn)
+        progressBar = findViewById(R.id.progressbar)
 
 
         Homebtn.setOnClickListener {
@@ -61,6 +65,7 @@ class APICallingActivity3 : AppCompatActivity() {
         RetrofitInstance.apiInterface.getData3().enqueue(object : Callback<DecorationPojo?> {
             override fun onResponse(p0: Call<DecorationPojo?>, p1: Response<DecorationPojo?>) {
                 if (p1.code() == 200 && p1.body() != null) {
+                    progressBar.visibility = View.GONE
 
                     val GridLayoutManager = GridLayoutManager(this@APICallingActivity3,2)
                     recyclerView.layoutManager = GridLayoutManager
@@ -72,11 +77,13 @@ class APICallingActivity3 : AppCompatActivity() {
 
                 } else {
                     Toast.makeText(this@APICallingActivity3, "error", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(p0: Call<DecorationPojo?>, p1: Throwable) {
                 Toast.makeText(this@APICallingActivity3, ""+p1.message, Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
             }
         })
 

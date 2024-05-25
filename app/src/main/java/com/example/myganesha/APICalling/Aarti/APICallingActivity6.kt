@@ -2,7 +2,9 @@ package com.example.myganesha.APICalling.Aarti
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,8 +23,8 @@ import retrofit2.Response
 class APICallingActivity6 : AppCompatActivity() {
     lateinit var Homebtn :ImageView
     lateinit var BackBtn :ImageView
-
     lateinit var  recyclerView: RecyclerView
+    lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,6 +38,7 @@ class APICallingActivity6 : AppCompatActivity() {
         recyclerView = findViewById(R.id.rv)
         Homebtn = findViewById(R.id.homebtn)
         BackBtn = findViewById(R.id.backbtn)
+        progressBar = findViewById(R.id.progressbar)
 
 
         Homebtn.setOnClickListener {
@@ -54,6 +57,7 @@ class APICallingActivity6 : AppCompatActivity() {
         RetrofitInstance.apiInterface.music().enqueue(object : Callback<AartiPojo?> {
             override fun onResponse(p0: Call<AartiPojo?>, p1: Response<AartiPojo?>) {
                 if (p1.code() == 200 && p1.body() != null) {
+                    progressBar.visibility = View.GONE
 
                     val LinearLayoutManager = LinearLayoutManager(this@APICallingActivity6)
                     recyclerView.layoutManager = LinearLayoutManager
@@ -65,11 +69,13 @@ class APICallingActivity6 : AppCompatActivity() {
 
                 } else {
                     Toast.makeText(this@APICallingActivity6, "error", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = View.GONE
                 }
             }
 
             override fun onFailure(p0: Call<AartiPojo?>, p1: Throwable) {
                 Toast.makeText(this@APICallingActivity6, ""+p1.message, Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
             }
         })
 
