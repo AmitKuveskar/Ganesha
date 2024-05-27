@@ -71,6 +71,7 @@ class MusicPlayerActivity : AppCompatActivity() {
         BackBtn.setOnClickListener {
             val intent = Intent(this@MusicPlayerActivity, APICallingActivity6::class.java)
             startActivity(intent)
+            finish()
         }
 
         musicqueue.setOnClickListener{
